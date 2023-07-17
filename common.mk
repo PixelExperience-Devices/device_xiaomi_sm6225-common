@@ -219,8 +219,7 @@ TARGET_USE_QCOM_OFFSET := true
 
 PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0.vendor \
-    libdisplayconfig.qti \
-    disable_configstore
+    libdisplayconfig.qti
 
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.sf.force_hwc_brightness=1
