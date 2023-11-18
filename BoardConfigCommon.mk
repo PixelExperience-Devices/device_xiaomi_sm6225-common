@@ -149,6 +149,9 @@ TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
 
+# qcom/common
+include device/qcom/common/BoardConfigQcom.mk
+
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS ?= $(COMMON_PATH)
 

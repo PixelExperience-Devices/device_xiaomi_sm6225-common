@@ -111,6 +111,12 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.vendor.audio.soundtrigger=sva
 
 # Bluetooth
+TARGET_USE_QTI_BT_STACK := false
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
+    frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml
+
 PRODUCT_PRODUCT_PROPERTIES += \
     bluetooth.hardware.power.idle_cur_ma=7 \
     bluetooth.hardware.power.operating_voltage_mv=3700 \
@@ -154,8 +160,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/camera/camxoverridesettings.txt:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camxoverridesettings.txt \
-    $(LOCAL_PATH)/configs/camera/st_license.lic:$(TARGET_COPY_OUT_VENDOR)/etc/camera/st_license.lic
+    $(LOCAL_PATH)/configs/camera/camxoverridesettings.txt:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camxoverridesettings.txt
 
 # Charger
 PRODUCT_COPY_FILES += \
@@ -300,7 +305,6 @@ PRODUCT_PACKAGES += \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    AOSPABengalFrameworksOverlay \
     BengalCarrierConfigOverlay \
     BengalFrameworksOverlay \
     BengalSettingsOverlay \
@@ -336,6 +340,9 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 
 # QC common
 TARGET_BOARD_PLATFORM := bengal
+TARGET_USE_BENGAL_HALS := true
+
+$(call inherit-product, device/qcom/common/common.mk)
 
 TARGET_COMMON_QTI_COMPONENTS += \
     alarm \
@@ -398,6 +405,7 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
+    hardware/qcom-caf/bootctrl \
     hardware/xiaomi
 
 # Treble
